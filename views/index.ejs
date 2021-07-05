@@ -1,0 +1,48 @@
+<% layout('layouts/boilerplate') %>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">AS BANK</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="/">Home</a>
+        <a class="nav-link" href="/transact">Payment Transfer</a>
+        <a class="nav-link" href="/history">Payment History</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <h1 class="text-center p-4 ">Welcome to AS Bank</h1>
+  <div class="row mt-5 pt-5 justify-content-around">
+    <div class="col-5 ">
+      <div class="card">
+        <div class="card-header">Payment Tansfer</div>
+        <div class="card-body">
+          <p class="card-text">Send Money</p>
+          <a href="/transact" class="btn btn-primary">Go to transfers</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-5 ">
+      <div class="card">
+        <div class="card-header">Payment History</div>
+        <div class="card-body">
+          <p class="card-text">View Historical Transactions</p>
+          <a href="/history" class="btn btn-primary">Go to history</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
