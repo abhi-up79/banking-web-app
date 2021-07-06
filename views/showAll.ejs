@@ -17,36 +17,35 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link" aria-current="page" href="/">Home</a>
-        <a class="nav-link" href="/show">View All Customers</a>
-        <a class="nav-link active" href="/history">Payment History</a>
+        <a class="nav-link active" href="/show">View All Customers</a>
+        <a class="nav-link" href="/history">Payment History</a>
       </div>
     </div>
   </div>
 </nav>
 
 <div class="container">
-  <h1 class="text-center p-4">Payment History</h1>
+  <h1 class="text-center p-4">All Customers</h1>
   <div class="row pt-5">
     <div class="col-10 offset-1">
       <table class="table">
         <thead>
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">From</th>
-            <th scope="col">To</th>
-            <th scope="col">Amount</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Balance</th>
           </tr>
         </thead>
         <tbody>
-          <% var i = 1 %> <% for (t of transactions) {%>
-            <tr>
-              <th scope="row"><%= i++ %></th>
-              <td><%= t.from %></a></td>
-              <td><%= t.to %></td>
-              <td><%= t.amount %></td>
-            </tr>
-            <% } %>
+          <% var i = 1 %> <% for (user of users) {%>
+          <tr>
+            <th scope="row"><%= i++ %></th>
+            <td><a href="/show/<%= user._id %>"><%= user.name %></a></td>
+            <td><%= user.email %></td>
+            <td><%= user.balance %></td>
           </tr>
+          <% } %>
         </tbody>
       </table>
     </div>

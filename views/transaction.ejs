@@ -17,7 +17,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link" aria-current="page" href="/">Home</a>
-        <a class="nav-link active" href="/transact">Payment Transfer</a>
+        <a class="nav-link" href="/show">View All Customers</a>
         <a class="nav-link" href="/history">Payment History</a>
       </div>
     </div>
@@ -25,34 +25,47 @@
 </nav>
 
 <div class="container">
-  <h1 class="text-center p-4">Welcome to AS Bank</h1>
-  <div class="row mt-5 pt-5">
-    <div class="col-10 offset-1">
-      <form action="" method="post"></form>
+  <h1 class="text-center p-4">Send Money</h1>
+
+  <div class="row mt-5 pt-3">
+    <div class="col-8 offset-2">
       <form
         action="/transact"
         class="row g-3 needs-validation"
         method="POST"
         novalidate
       >
-        <div class="col-md-3">
+        <div class="col-6">
           <label for="validationCustom04" class="form-label">From</label>
-          <select class="form-select" id="validationCustom04" required>
-            <option selected disabled value="">Choose...</option>
-            <option>...</option>
+          <select
+            name="transact[from]"
+            class="form-select"
+            id="validationCustom04"
+          >
+            <option selected value="<%= currentuser.name %>">
+              <%= currentuser.name %>
+            </option>
           </select>
-          <div class="invalid-feedback">Please select a valid</div>
-        </div>
-        <div class="col-md-3">
-          <label for="validationCustom04" class="form-label">To</label>
-          <select class="form-select" id="validationCustom04" required>
-            <option selected disabled value="">Choose...</option>
-            <option>...</option>
-          </select>
-          <div class="invalid-feedback">Please select a valid state.</div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-6">
+          <label for="validationCustom04" class="form-label">To</label>
+          <select
+            name="transact[to]"
+            class="form-select"
+            id="validationCustom04"
+            required
+          >
+            <option selected disabled value="">Choose...</option>
+            <% for (user of users) { %> <% if (user.name !== currentuser.name)
+            {%>
+            <option><%= user.name %></option>
+            <% } %> <% } %>
+          </select>
+          <div class="invalid-feedback">Please select a valid User.</div>
+        </div>
+
+        <div class="col-6">
           <label for="amount" class="form-label">Amount</label>
           <input
             type="text"
@@ -64,7 +77,7 @@
           <div class="invalid-feedback">Please provide a valid zip.</div>
         </div>
         <div class="col-12">
-          <button class="btn btn-primary" type="submit">Submit form</button>
+          <button class="btn btn-primary col-3" type="submit">Pay</button>
         </div>
       </form>
     </div>
