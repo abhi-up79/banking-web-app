@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 const express = require("express");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
@@ -7,7 +11,8 @@ const User = require("./models/user");
 const Transaction = require("./models/transaction");
 
 const app = express();
-const port = 3000;
+
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/sparks-bank-app";
 
 mongoose.connect("mongodb://localhost:27017/sparks-bank-app", {
   useNewUrlParser: true,
@@ -57,6 +62,10 @@ app.post("/transact", async (req, res) => {
   const toUser = await User.find({ name: to });
   fromUser[0].balance -= amount;
   toUser[0].balance += parseInt(amount);
+  if (fromUser[0].balance < 0) {
+    res.redirect("/history");
+    return;
+  }
   await fromUser[0].save();
   await toUser[0].save();
 
@@ -78,6 +87,8 @@ app.get("/history", async (req, res) => {
 app.get("*", (req, res) => {
   res.render("pageNotFound.ejs");
 });
+
+const port = process.env.PORT || "3000";
 
 app.listen(port, () => {
   console.log(`App is listening on port ${port}!`);
