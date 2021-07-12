@@ -14,7 +14,7 @@ const app = express();
 
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/sparks-bank-app";
 
-mongoose.connect("mongodb://localhost:27017/sparks-bank-app", {
+mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
